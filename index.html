@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Search</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#0b0b0f;
+  color:white;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.container{
+  width:92%;
+  max-width:600px;
+  text-align:center;
+}
+.logo{
+  font-size:42px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+.subtitle{
+  color:#aaa;
+  margin-bottom:30px;
+}
+.search{
+  display:flex;
+  gap:10px;
+}
+input{
+  flex:1;
+  padding:16px;
+  border-radius:12px;
+  border:1px solid #333;
+  background:#17171d;
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+button{
+  padding:16px 22px;
+  border:0;
+  border-radius:12px;
+  background:#7c3aed;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover{background:#6d28d9}
+.result{
+  display:none;
+  margin-top:25px;
+  padding:22px;
+  background:#17171d;
+  border:1px solid #292932;
+  border-radius:16px;
+  text-align:left;
+}
+.result h2{margin-top:0}
+.item{
+  padding:10px 0;
+  border-bottom:1px solid #292932;
+}
+.item:last-child{border-bottom:0}
+a{color:#a78bfa}
+.note{
+  margin-top:25px;
+  font-size:13px;
+  color:#777;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="logo">🔎 Instagram Search</div>
+  <div class="subtitle">ค้นหาข้อมูล Instagram ที่เปิดเผยต่อสาธารณะ</div>
+  <div class="search">
+    <input id="username" placeholder="@username">
+    <button onclick="searchInstagram()">ค้นหา</button>
+  </div>
+  <div id="result" class="result"></div>
+  <div class="note">
+    ใช้สำหรับค้นหาข้อมูลสาธารณะเท่านั้น
+  </div>
+</div>
+<script>
+function searchInstagram(){
+  let username = document.getElementById("username").value.trim();
+  if(username.startsWith("@")){
+    username = username.substring(1);
+  }
+  if(!username){
+    alert("กรุณาใส่ Username");
+    return;
+  }
+  const result = document.getElementById("result");
+  result.style.display = "block";
+  result.innerHTML = `
+    <h2>@${username}</h2>
+    <div class="item">
+      <b>Instagram:</b><br>
+      <a href="https://www.instagram.com/${username}/" target="_blank">
+        เปิดโปรไฟล์ Instagram
+      </a>
+    </div>
+    <div class="item">
+      <b>Username:</b> @${username}
+    </div>
+    <div class="item">
+      <b>สถานะ:</b> ตรวจสอบจากโปรไฟล์ Instagram โดยตรง
+    </div>
+    <div class="item">
+      <b>ข้อมูล:</b> เว็บไซต์นี้จะแสดงเฉพาะข้อมูลที่เปิดเผยต่อสาธารณะ
+    </div>
+  `;
+}
+</script>
+</body>
+</html>
