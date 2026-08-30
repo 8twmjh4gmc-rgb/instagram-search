@@ -2,125 +2,294 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instagram Search</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Instagram OSINT Academy</title>
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#0b0b0f;
-  color:white;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+ margin:0;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+ background:#08090d;
+ color:#fff;
 }
-.container{
-  width:92%;
-  max-width:600px;
-  text-align:center;
+header{
+ padding:22px;
+ border-bottom:1px solid #22242d;
+ background:#0d0f15;
+ position:sticky;
+ top:0;
+ z-index:10;
+}
+.nav{
+ max-width:1100px;
+ margin:auto;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
 }
 .logo{
-  font-size:42px;
-  font-weight:bold;
-  margin-bottom:10px;
+ font-size:21px;
+ font-weight:800;
 }
-.subtitle{
-  color:#aaa;
-  margin-bottom:30px;
+.logo span{color:#a855f7}
+.badge{
+ font-size:12px;
+ padding:7px 10px;
+ border:1px solid #343641;
+ border-radius:20px;
+ color:#aaa;
 }
-.search{
-  display:flex;
-  gap:10px;
+.hero{
+ max-width:1100px;
+ margin:70px auto 40px;
+ padding:0 20px;
+ text-align:center;
+}
+.hero h1{
+ font-size:clamp(34px,7vw,68px);
+ margin:0 0 15px;
+}
+.hero h1 span{
+ color:#a855f7;
+}
+.hero p{
+ color:#999;
+ max-width:650px;
+ margin:auto;
+ line-height:1.7;
+}
+.searchbox{
+ max-width:650px;
+ margin:35px auto 0;
+ display:flex;
+ gap:10px;
 }
 input{
-  flex:1;
-  padding:16px;
-  border-radius:12px;
-  border:1px solid #333;
-  background:#17171d;
-  color:white;
-  font-size:16px;
-  outline:none;
+ flex:1;
+ background:#151720;
+ color:#fff;
+ border:1px solid #30333e;
+ border-radius:12px;
+ padding:16px;
+ font-size:16px;
+ outline:none;
 }
 button{
-  padding:16px 22px;
-  border:0;
-  border-radius:12px;
-  background:#7c3aed;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
+ border:0;
+ border-radius:12px;
+ padding:16px 22px;
+ background:#9333ea;
+ color:#fff;
+ font-weight:700;
+ cursor:pointer;
 }
-button:hover{background:#6d28d9}
-.result{
-  display:none;
-  margin-top:25px;
-  padding:22px;
-  background:#17171d;
-  border:1px solid #292932;
-  border-radius:16px;
-  text-align:left;
+button:hover{background:#7e22ce}
+#result{
+ display:none;
+ max-width:1100px;
+ margin:25px auto;
+ padding:0 20px;
 }
-.result h2{margin-top:0}
-.item{
-  padding:10px 0;
-  border-bottom:1px solid #292932;
+.profile{
+ background:#11131a;
+ border:1px solid #292c36;
+ border-radius:18px;
+ padding:25px;
 }
-.item:last-child{border-bottom:0}
-a{color:#a78bfa}
-.note{
-  margin-top:25px;
-  font-size:13px;
-  color:#777;
+.profile h2{margin-top:0}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:15px;
+ margin-top:20px;
+}
+.card{
+ background:#181a22;
+ border:1px solid #292c36;
+ border-radius:14px;
+ padding:18px;
+}
+.card small{
+ color:#888;
+ display:block;
+ margin-bottom:8px;
+}
+.card strong{
+ font-size:18px;
+}
+.link{
+ margin-top:20px;
+ display:inline-block;
+ color:#c084fc;
+ text-decoration:none;
+}
+section{
+ max-width:1100px;
+ margin:70px auto;
+ padding:0 20px;
+}
+section h2{
+ font-size:30px;
+}
+.lessons{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+ gap:15px;
+}
+.lesson{
+ background:#11131a;
+ border:1px solid #292c36;
+ border-radius:15px;
+ padding:22px;
+}
+.lesson h3{margin-top:0}
+.lesson p{
+ color:#999;
+ line-height:1.6;
+}
+.warning{
+ border:1px solid #4b5563;
+ background:#111827;
+ border-radius:15px;
+ padding:20px;
+ color:#bbb;
+ line-height:1.7;
+}
+footer{
+ text-align:center;
+ color:#666;
+ padding:40px 20px;
+ border-top:1px solid #22242d;
 }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="logo">🔎 Instagram Search</div>
-  <div class="subtitle">ค้นหาข้อมูล Instagram ที่เปิดเผยต่อสาธารณะ</div>
-  <div class="search">
-    <input id="username" placeholder="@username">
-    <button onclick="searchInstagram()">ค้นหา</button>
-  </div>
-  <div id="result" class="result"></div>
-  <div class="note">
-    ใช้สำหรับค้นหาข้อมูลสาธารณะเท่านั้น
-  </div>
+<header>
+ <div class="nav">
+  <div class="logo">🔎 Instagram <span>OSINT</span></div>
+  <div class="badge">ACADEMY</div>
+ </div>
+</header>
+<div class="hero">
+ <h1>Instagram <span>OSINT</span></h1>
+ <p>
+ เรียนรู้การค้นหาและวิเคราะห์ Digital Footprint
+ จากข้อมูลที่ผู้ใช้เปิดเผยต่อสาธารณะ
+ เพื่อการศึกษาและการวิจัยอย่างมีจริยธรรม
+ </p>
+ <div class="searchbox">
+  <input id="username" placeholder="@username">
+  <button onclick="searchUser()">ค้นหา</button>
+ </div>
 </div>
+<div id="result">
+ <div class="profile">
+  <h2 id="title"></h2>
+  <div class="grid">
+   <div class="card">
+    <small>Username</small>
+    <strong id="user"></strong>
+   </div>
+   <div class="card">
+    <small>แหล่งข้อมูล</small>
+    <strong>Instagram</strong>
+   </div>
+   <div class="card">
+    <small>ประเภทข้อมูล</small>
+    <strong>สาธารณะ</strong>
+   </div>
+   <div class="card">
+    <small>การตรวจสอบ</small>
+    <strong>Manual OSINT</strong>
+   </div>
+  </div>
+  <a id="profileLink" class="link" target="_blank">
+   เปิดโปรไฟล์ Instagram ↗
+  </a>
+ </div>
+</div>
+<section>
+ <h2>📚 บทเรียน OSINT</h2>
+ <div class="lessons">
+  <div class="lesson">
+   <h3>01 — Username Intelligence</h3>
+   <p>
+   เรียนรู้การค้นหา Username และตรวจสอบว่าชื่อเดียวกัน
+   ปรากฏบนเว็บไซต์หรือแพลตฟอร์มอื่นหรือไม่
+   </p>
+  </div>
+  <div class="lesson">
+   <h3>02 — Profile Analysis</h3>
+   <p>
+   วิเคราะห์ Bio รูปโปรไฟล์ ลิงก์ และข้อมูลที่เจ้าของบัญชี
+   เปิดเผยด้วยตัวเอง
+   </p>
+  </div>
+  <div class="lesson">
+   <h3>03 — Digital Footprint</h3>
+   <p>
+   ศึกษาร่องรอยดิจิทัลที่เกิดจากข้อมูลสาธารณะ
+   และเรียนรู้ว่าข้อมูลเหล่านั้นเชื่อมโยงกันอย่างไร
+   </p>
+  </div>
+  <div class="lesson">
+   <h3>04 — Verification</h3>
+   <p>
+   ฝึกตรวจสอบข้อมูลจากหลายแหล่ง ไม่สรุปว่าข้อมูลใดเป็นจริง
+   เพียงเพราะพบจากเว็บไซต์เดียว
+   </p>
+  </div>
+ </div>
+</section>
+<section>
+ <h2>🛡️ จริยธรรมในการทำ OSINT</h2>
+ <div class="warning">
+
+ใช้เพื่อการศึกษาเท่านั้น
+
+เว็บไซต์นี้ออกแบบมาเพื่อสอนแนวคิด OSINT และ
+Digital Footprint โดยใช้เฉพาะข้อมูลที่เปิดเผยต่อสาธารณะ
+
+ห้ามใช้เพื่อขโมยบัญชี เจาะระบบ เปิดเผยข้อมูลส่วนตัว
+ติดตามบุคคลโดยไม่ได้รับอนุญาต หรือสร้างความเดือดร้อนแก่ผู้อื่น
+
+หลักสำคัญ:
+เก็บเท่าที่จำเป็น • ตรวจสอบแหล่งข้อมูล • เคารพความเป็นส่วนตัว
+
+ </div>
+</section>
+<footer>
+ Instagram OSINT Academy • Educational Project
+</footer>
 <script>
-function searchInstagram(){
-  let username = document.getElementById("username").value.trim();
-  if(username.startsWith("@")){
-    username = username.substring(1);
-  }
-  if(!username){
-    alert("กรุณาใส่ Username");
-    return;
-  }
-  const result = document.getElementById("result");
-  result.style.display = "block";
-  result.innerHTML = `
-    <h2>@${username}</h2>
-    <div class="item">
-      <b>Instagram:</b><br>
-      <a href="https://www.instagram.com/${username}/" target="_blank">
-        เปิดโปรไฟล์ Instagram
-      </a>
-    </div>
-    <div class="item">
-      <b>Username:</b> @${username}
-    </div>
-    <div class="item">
-      <b>สถานะ:</b> ตรวจสอบจากโปรไฟล์ Instagram โดยตรง
-    </div>
-    <div class="item">
-      <b>ข้อมูล:</b> เว็บไซต์นี้จะแสดงเฉพาะข้อมูลที่เปิดเผยต่อสาธารณะ
-    </div>
-  `;
+function searchUser(){
+ let username=document.getElementById("username").value.trim();
+ if(username.startsWith("@")){
+   username=username.substring(1);
+ }
+ if(!username){
+   alert("กรุณาใส่ Username");
+   return;
+ }
+ document.getElementById("result").style.display="block";
+ document.getElementById("title").textContent=
+   "ผลการค้นหา @" + username;
+ document.getElementById("user").textContent=
+   "@" + username;
+ document.getElementById("profileLink").href=
+   "https://www.instagram.com/" + encodeURIComponent(username) + "/";
+ document.getElementById("result").scrollIntoView({
+   behavior:"smooth"
+ });
 }
+document.getElementById("username").addEventListener(
+ "keydown",
+ function(e){
+   if(e.key==="Enter"){
+     searchUser();
+   }
+ }
+);
 </script>
 </body>
 </html>
